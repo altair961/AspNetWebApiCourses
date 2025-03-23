@@ -10,11 +10,11 @@ namespace CityInfo.API
             // Add services to the container.
 
             builder.Services.AddControllers();
-
+            builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -22,12 +22,17 @@ namespace CityInfo.API
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
 
-            app.MapControllers();
+            //app.MapControllers();
+
+            app.Run(async(context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
 
             app.Run();
         }
